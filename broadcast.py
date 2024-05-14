@@ -4,6 +4,7 @@ import numpy as np
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 size = comm.Get_size()
+my_hostname=MPI.Get_processor_name()
 
 X = np.empty(4,dtype='i')
 if rank==0:
@@ -11,4 +12,4 @@ if rank==0:
 
 comm.Bcast(X, root=0)
 
-print("MPI rank %d of %d processes has X: "%(rank,size),X)
+print(f"MPI rank {rank} of {size} processes on machine {my_hostname} has X: {X}")
